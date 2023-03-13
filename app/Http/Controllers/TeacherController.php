@@ -35,6 +35,11 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name'=> 'required',
+            'title'=> 'required',
+            'institute'=> 'required',
+        ]);
         $data = Teacher::insert([
             'name'=> $request->name,
             'title'=> $request->title,
@@ -61,9 +66,10 @@ class TeacherController extends Controller
      * @param  \App\Models\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function edit(Teacher $teacher)
+    public function edit(Teacher $teacher, $id)
     {
-        //
+        $data = Teacher::findOrFail($id);
+        return response()->json($data);
     }
 
     /**
@@ -73,9 +79,20 @@ class TeacherController extends Controller
      * @param  \App\Models\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Teacher $teacher)
+    public function update(Request $request, $id)
     {
-        //
+        // dd($id);
+        $request->validate([
+            'name'=> 'required',
+            'title'=> 'required',
+            'institute'=> 'required',
+        ]);
+        $data = Teacher::findOrFail($id)->update([
+            'name'=> $request->name,
+            'title'=> $request->title,
+            'institute'=> $request->institute,
+        ]);
+        return response()->json($data);
     }
 
     /**
@@ -84,8 +101,9 @@ class TeacherController extends Controller
      * @param  \App\Models\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Teacher $teacher)
+    public function destroy(Teacher $teacher, $id)
     {
-        //
+        Teacher::findOrFail($id)->delete();
+        return response()->json();
     }
 }

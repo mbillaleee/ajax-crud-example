@@ -45,6 +45,9 @@ Route::post('delete', [MemberController::class, 'destroy'])->name('member.destro
 Route::get('/teacher', [TeacherController::class, 'index'])->name('teacher.index');
 Route::get('/teacher/all', [TeacherController::class, 'show'])->name('teacher.show');
 Route::post('/teacher/store/', [TeacherController::class, 'store'])->name('teacher.store');
+Route::get('/teacher/edit/{id}', [TeacherController::class, 'edit'])->name('teacher.edit');
+Route::post('/teacher/update/{id}', [TeacherController::class, 'update'])->name('teacher.update');
+Route::get('/teacher/destroy/{id}', [TeacherController::class, 'destroy'])->name('teacher.destroy');
 
 
 
