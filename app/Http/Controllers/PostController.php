@@ -59,7 +59,15 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $post->title = $request->title;
+        $post->description = $request->description;
+        $post->save();
+
+        return response()->json([
+            'message'  => 'Post Update',
+            'status'   => 'Success',
+            'data'     => $post
+        ]);
     }
 
     /**
