@@ -31,7 +31,7 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->description = $request->description;
         $post->save();
-        
+
         return response()->json([
             'message'  => 'Post Create',
             'status'   => 'Success',
@@ -47,7 +47,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return response()->json(['post'=>$post]);
     }
 
     /**
