@@ -19,12 +19,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td scope="col">SL No</td>
-                            <td scope="col">Name </td>
-                            <td scope="col">Title</td>
-                            <td scope="col">Description</td>
-                        </tr>
+
                     </tbody>
                 </table>
             </div>
@@ -39,7 +34,7 @@
                 <form id="" name="" class="form-horizontal" action="">
                     <input type="hidden" name="id" id="memid">
                     <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">Title</label>
+                        <label for="name" class="col-sm-2 control-label">Name</label>
                         <div class="col-sm-12">
                             <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" value="">
                             <span class="text-danger" id="nameError"></span>
@@ -57,11 +52,11 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Institute</label>
                         <div class="col-sm-12">
-                        <input type="text" class="form-control" id="institute" name="institute" placeholder="Enter institute" value="">
-                        <span class="text-danger" id="instituteError"></span>
+                            <input type="text" class="form-control" id="institute" name="institute" placeholder="Enter institute" value="">
+                            <span class="text-danger" id="instituteError"></span>
                         </div>
                     </div>
-                        <input type="text" id="id">
+                        {{-- <input type="text" id="id"> --}}
                     <div class="col-sm-offset-2 col-sm-10 mt-2">
                         <button type="button" onClick="addData()" class="btn btn-primary addBtb" id="savedata" value="create">Add </button>
                         <button type="button" onClick="updateData()" class="btn btn-primary updBtn" id="savedata" value="create">Update </button>
@@ -89,13 +84,13 @@
     });
 // -------- stsart get all data from database---------
     function allData(){
-
+        // console.log(data);
         $.ajax({
             type: 'GET',
             dataType: 'json',
             url: "/teacher/all",
             success:function(response){
-                // console.log(data);
+                console.log(data);
                 var data = ""
                 $.each(response, function(key, value){
                     // console.log(value.name);
@@ -123,6 +118,7 @@
         $('#title').val('');
         $('#institute').val('');
 
+
         // error span clear start
         $('#nameError').text('');
         $('#titleError').text('');
@@ -136,9 +132,9 @@
        var name = $('#name').val();
        var title = $('#title').val();
        var institute = $('#institute').val();
-    //    console.log(name);
-    //    console.log(title);
-    //    console.log(institute);
+       console.log(name);
+       console.log(title);
+       console.log(institute);
     $.ajax({
         type: "POST",
         dataType: 'json',

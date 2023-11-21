@@ -5,6 +5,7 @@
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Add
     </button>
+    <a href="{{route('member.indexsearch')}}" class="btn btn-md btn-primary">Member Search Table</a>
         <table class="table">
             <thead>
                 <tr>

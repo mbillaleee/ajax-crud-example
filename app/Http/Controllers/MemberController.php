@@ -16,6 +16,26 @@ class MemberController extends Controller
     {
         return view('pages.show');
     }
+    public function indexsearch()
+    {
+
+        $members = Member::all();
+        // dd($members);
+        return view('pages.member-search-table', compact('members'));
+    }
+
+
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        
+        $members = Member::where('name', 'like', "%$search%")
+                     ->orWhere('email', 'like', "%$search%")
+                     ->get();
+        
+        return view('pages.member-search-table', compact('members'));
+    }
 
     /**
      * Show the form for creating a new resource.

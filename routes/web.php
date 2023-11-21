@@ -6,6 +6,8 @@ use App\Http\Controllers\ProductAjaxController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\MenuItemController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,23 +25,20 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+// Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/ajax-post', [AjaxPostController::class, 'create'])->name('ajax.post.create');
-Route::get('ajax-post/store', [AjaxPostController::class, 'store'])->name('ajax.post.store');
 
-Route::resource('products-ajax-crud', ProductAjaxController::class);
-
-
-Route::resource('ajaxposts', PostController::class);
 
 
 Route::get('member', [MemberController::class, 'index'])->name('member.index');
+Route::get('member-search', [MemberController::class, 'indexsearch'])->name('member.indexsearch');
 Route::get('show', [MemberController::class, 'show'])->name('member.show');
 Route::post('store', [MemberController::class, 'store'])->name('member.store');
 Route::post('update', [MemberController::class, 'update'])->name('member.update');
 Route::post('delete', [MemberController::class, 'destroy'])->name('member.destroy');
+Route::post('/search', [MemberController::class, 'search'])->name('user.search');
 
 
 Route::get('/teacher', [TeacherController::class, 'index'])->name('teacher.index');
@@ -50,4 +49,16 @@ Route::post('/teacher/update/{id}', [TeacherController::class, 'update'])->name(
 Route::get('/teacher/destroy/{id}', [TeacherController::class, 'destroy'])->name('teacher.destroy');
 
 
+
+
+Route::get('/menu', [MenuItemController::class, 'index'])->name('menu.index');
+Route::post('/menu-items',[MenuItemController::class, 'store'])->name('menu.store');
+Route::get('/menu-items/{id}/edit', [MenuItemController::class, 'edit'])->name('menu.edit');
+Route::put('/menu-items/{id}/update', [MenuItemController::class, 'update'])->name('menu.update');
+Route::put('//menu-items/update-order', [MenuItemController::class, 'updateOrder'])->name('menu.updateOrder');
+
+
+
+Route::get('/ajax/index', [TeacherController::class, 'ajaxindex'])->name('ajax.index');
+Route::any('/ajax/store', [TeacherController::class, 'ajaxstore'])->name('ajax.store');
 

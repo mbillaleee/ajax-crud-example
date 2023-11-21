@@ -106,4 +106,19 @@ class TeacherController extends Controller
         Teacher::findOrFail($id)->delete();
         return response()->json();
     }
+
+    public function ajaxindex()
+    {
+       return view("ajax.index");
+    }
+    public function ajaxstore(Request $request)
+    {
+      // dd($request->all());
+        $teacher = new Teacher();
+        $teacher->name = $request->data;
+        $teacher->title = 'title';
+        $teacher->institute = 'institute';
+        $teacher->save();
+        return true;
+    }
 }
